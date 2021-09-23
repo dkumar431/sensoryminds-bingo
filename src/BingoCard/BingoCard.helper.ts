@@ -1,7 +1,11 @@
 import { BingoCardType } from "./";
 import { BingoCardItemType } from "./BingoCard.types";
 
-const isDiagonalComplete = (card: BingoCardType) => {
+const isDiagonalComplete = (
+  card: BingoCardType,
+  rowIdx: number,
+  colIdx: number
+) => {
   const isLeftDiagonalComplete = () => {
     let i;
     let j;
@@ -24,7 +28,18 @@ const isDiagonalComplete = (card: BingoCardType) => {
     return true;
   };
 
-  if (isLeftDiagonalComplete() || isRightDiagonalComplete()) {
+  const isLeftDiagonalElement = () => {
+    return rowIdx === colIdx ? true : false;
+  };
+
+  const isRightDiagonalElement = () => {
+    return rowIdx + colIdx === 4 ? true : false;
+  };
+
+  if (
+    (isLeftDiagonalElement() && isLeftDiagonalComplete()) ||
+    (isRightDiagonalElement() && isRightDiagonalComplete())
+  ) {
     return true;
   }
   return false;
@@ -53,8 +68,9 @@ export const isWinner = (
   rowIdx: number,
   columnIdx: number
 ) => {
+  // console.log("isDiagonalComplete(card)", isDiagonalComplete(card))
   if (
-    isDiagonalComplete(card) ||
+    isDiagonalComplete(card, rowIdx, columnIdx) ||
     isHorizentalLineComplete(card, rowIdx) ||
     isVerticalLineComplete(card, columnIdx)
   ) {
@@ -70,7 +86,15 @@ export const createBingoCard = (words: string[]) => {
   for (let i = 0; i < 5; i++) {
     const arr: BingoCardItemType[] = [];
     for (let j = 0; j < 5; j++) {
-      arr.push(cardItems[5 * i + j]);
+      if (i === 2 && j === 2) {
+        const freeCellItem: BingoCardItemType = {
+          label: "FREE",
+          isMarked: true,
+        };
+        arr.push(freeCellItem);
+      } else {
+        arr.push(cardItems[5 * i + j]);
+      }
     }
     matrix.push(arr);
   }

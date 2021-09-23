@@ -9,7 +9,6 @@ const BingoCard = ({
   onClick,
   setIsGameOver,
 }: BingoCardProps) => {
-  
   const rewardRef = useRef<any>();
   let config = getRewards(isSelected && isWinner);
 
@@ -47,15 +46,8 @@ const BingoCard = ({
           {
             return row.map((col, columnIdx) => {
               const item = card[rowIdx][columnIdx];
-              if (rowIdx === 2 && columnIdx === 2) {
-                const freeCellItem: BingoCardItemType = {
-                  label: "FREE",
-                  isMarked: true,
-                };
-                return <BingoCardItem item={freeCellItem} />;
-              } else {
                 return <BingoCardItem item={item} />;
-              }
+              
             });
           }
         })}

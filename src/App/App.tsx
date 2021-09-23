@@ -56,6 +56,7 @@ function App() {
         for (let j = 0; j < row.length; j++) {
           if (pickedItem.label === bingoCardMatrix[i][j].label) {
             bingoCardMatrix[i][j].isMarked = true;
+            console.log("isWinner(bingoCardMatrix, i, j)", isWinner(bingoCardMatrix, i, j))
             if (isWinner(bingoCardMatrix, i, j)) {
               winnerList.push(k);
             }
