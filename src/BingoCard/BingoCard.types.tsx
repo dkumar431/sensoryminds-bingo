@@ -12,7 +12,8 @@ export type BingoCardItemProps = {
 export type BingoCardProps = {
     card: BingoCardType;
     isSelected: boolean;
-    isWinner: boolean;
     onClick: () => void;
     setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
+    winners: number[],
+    currentCardIndex: number;
 }

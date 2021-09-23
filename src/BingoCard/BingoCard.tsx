@@ -5,19 +5,22 @@ import { Styles, BingoCardItemType, BingoCardProps, BingoCardItem, getRewards } 
 const BingoCard = ({
   card,
   isSelected,
-  isWinner,
   onClick,
   setIsGameOver,
+  winners,
+  currentCardIndex
 }: BingoCardProps) => {
   const rewardRef = useRef<any>();
+  const isWinner = winners.includes(currentCardIndex);
   let config = getRewards(isSelected && isWinner);
 
   useEffect(() => {
-    if (isWinner) {
+    console.log("Use effect run....", winners)
+    if (winners.includes(currentCardIndex)) {
       //@ts-ignore
       rewardRef.current.rewardMe();
     }
-  }, [isWinner]);
+  }, [winners]);
 
   useEffect(() => {
     let totalMarkedItems = 0;

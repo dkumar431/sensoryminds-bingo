@@ -29,8 +29,9 @@ const BingoCardSelector = ({
                     setSelectedBingoCardIndex(index);
                   }
                 }}
-                isWinner = {winners.includes(index)}
                 setIsGameOver={setIsGameOver}
+                winners ={winners}
+                currentCardIndex={index}
               />
             </Styles.BingoCardsWrapper>
           );

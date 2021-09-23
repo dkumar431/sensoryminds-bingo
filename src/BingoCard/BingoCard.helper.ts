@@ -68,7 +68,6 @@ export const isWinner = (
   rowIdx: number,
   columnIdx: number
 ) => {
-  // console.log("isDiagonalComplete(card)", isDiagonalComplete(card))
   if (
     isDiagonalComplete(card, rowIdx, columnIdx) ||
     isHorizentalLineComplete(card, rowIdx) ||
